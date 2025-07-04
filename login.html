@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | FarmConnect</title>
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: #eee;
+        }
+        .auth-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        .auth-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+        .auth-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+        }
+        .sms-login-btn {
+            background: var(--light);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-tabs">
+            <div class="auth-tab active">Login</div>
+            <div class="auth-tab">Register</div>
+        </div>
+        
+        <div class="auth-form">
+            <input type="text" placeholder="Phone Number" id="phoneInput">
+            <input type="password" placeholder="Password">
+            <button>Login</button>
+            <button class="sms-login-btn" onclick="requestOTP()">
+                Login via SMS
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function requestOTP() {
+            const phone = document.getElementById('phoneInput').value;
+            if (phone) {
+                fetch('https://your-backend-url/send-otp', {
+                    method: 'POST',
+                    body: JSON.stringify({ phone })
+                })
+                .then(() => {
+                    const otp = prompt("Enter OTP sent to your phone:");
+                    if (otp) verifyOTP(phone, otp);
+                });
+            }
+        }
+
+        function verifyOTP(phone, otp) {
+            // Implement OTP verification
+        }
+    </script>
+</body>
+</html>

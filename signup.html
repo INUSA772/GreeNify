@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | FarmConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3A7D44;
+            --secondary: #FF6B35;
+            --light: #F8F4E3;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            left: 15px;
+            color: white;
+        }
+        .auth-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .user-type-toggle {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--primary);
+        }
+        .user-type {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .user-type.active {
+            background: var(--primary);
+            color: white;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .otp-container {
+            display: none;
+            margin-top: 15px;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-sms {
+            background: var(--light);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-top: 10px;
+        }
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+            z-index: -1;
+        }
+        .divider span {
+            background: white;
+            padding: 0 15px;
+        }
+        .ussd-callout {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        @media (max-width: 480px) {
+            .auth-container {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1>Create Account</h1>
+    </div>
+
+    <div class="auth-container">
+        <div class="user-type-toggle">
+            <div class="user-type active" onclick="setUserType('buyer')">I'm a Buyer</div>
+            <div class="user-type" onclick="setUserType('farmer')">I'm a Farmer</div>
+        </div>
+
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="e.g. 0712345678" required>
+            </div>
+
+            <div class="form-group" id="locationField">
+                <label for="location">Nearest Town/City</label>
+                <input type="text" id="location" required>
+            </div>
+
+            <div class="form-group" id="farmField" style="display:none">
+                <label for="farmName">Farm Name</label>
+                <input type="text" id="farmName">
+            </div>
+
+            <div class="form-group" id="produceField" style="display:none">
+                <label for="produceType">Main Produce</label>
+                <select id="produceType">
+                    <option>Vegetables</option>
+                    <option>Fruits</option>
+                    <option>Grains</option>
+                    <option>Dairy</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="requestOTP()">
+                Continue
+            </button>
+
+            <div class="otp-container" id="otpContainer">
+                <div class="form-group">
+                    <label for="otp">Enter OTP Sent via SMS</label>
+                    <input type="text" id="otp" maxlength="6">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="verifyAccount()">
+                    Verify & Create Account
+                </button>
+                <button type="button" class="btn btn-sms" onclick="resendOTP()">
+                    <i class="fas fa-sync-alt"></i> Resend OTP
+                </button>
+            </div>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <button type="button" class="btn btn-sms" onclick="registerViaUSSD()">
+                <i class="fas fa-mobile-alt"></i> Register via USSD
+            </button>
+        </form>
+
+        <div class="ussd-callout">
+            <p>Don't have internet? Dial <strong>*384*1#</strong> to register</p>
+        </div>
+    </div>
+
+    <script>
+        let currentUserType = 'buyer';
+        let otpRequestId = '';
+
+        function setUserType(type) {
+            currentUserType = type;
+            document.querySelectorAll('.user-type').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Toggle farmer-specific fields
+            document.getElementById('farmField').style.display = 
+                type === 'farmer' ? 'block' : 'none';
+            document.getElementById('produceField').style.display = 
+                type === 'farmer' ? 'block' : 'none';
+        }
+
+        function requestOTP() {
+            const phone = document.getElementById('phone').value;
+            if (!phone) {
+                alert('Please enter your phone number');
+                return;
+            }
+
+            // Simulate API call
+            otpRequestId = Math.random().toString(36).substring(2, 10);
+            document.getElementById('otpContainer').style.display = 'block';
+            alert(`OTP sent to ${phone} (Demo: 123456)`);
+            
+            // Scroll to OTP field
+            document.getElementById('otpContainer').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function verifyAccount() {
+            const otp = document.getElementById('otp').value;
+            if (otp === '123456') { // Demo verification
+                alert('Account created successfully!');
+                window.location.href = currentUserType === 'farmer' 
+                    ? 'farmer-dashboard.html' 
+                    : 'products.html';
+            } else {
+                alert('Invalid OTP. Please try again.');
+            }
+        }
+
+        function resendOTP() {
+            alert('New OTP sent!');
+        }
+
+        function registerViaUSSD() {
+            const ussdCode = '*384*1#';
+            alert(`Dial ${ussdCode} to register\n\nFor Android: This will auto-dial`);
+            
+            // Auto-dial for Android
+            window.location.href = `tel:${ussdCode}`;
+        }
+    </script>
+</body>
+</html>

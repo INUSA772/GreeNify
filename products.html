@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace | FarmConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3A7D44;
+            --secondary: #FF6B35;
+            --light: #F8F4E3;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .search-container {
+            padding: 15px;
+            background: white;
+            display: flex;
+            gap: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+        .voice-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 15px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .product-img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 10px;
+        }
+        .sms-alert-btn {
+            background: var(--light);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Marketplace</h1>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search products...">
+        <button class="voice-btn" id="voiceBtn">
+            <i class="fas fa-microphone"></i>
+        </button>
+    </div>
+
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655" class="product-img" alt="Tomatoes">
+            <div class="product-info">
+                <h4>Tomatoes</h4>
+                <p>KSh 150/kg</p>
+                <small>Nairobi</small>
+                <button class="sms-alert-btn" onclick="sendSMSAlert('Tomatoes')">
+                    <i class="fas fa-sms"></i> Get SMS Alerts
+                </button>
+            </div>
+        </div>
+        <!-- More products... -->
+    </div>
+
+    <script>
+        // Voice Search
+        const voiceBtn = document.getElementById('voiceBtn');
+        voiceBtn.addEventListener('click', () => {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.querySelector('.search-input').value = transcript;
+                // Implement search logic here
+            }
+            
+            recognition.start();
+        });
+
+        // SMS Alert Function
+        function sendSMSAlert(product) {
+            const phone = prompt("Enter your phone number to receive alerts:");
+            if (phone) {
+                fetch('https://your-backend-url/sms-subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ product, phone })
+                })
+                .then(() => alert(`You'll receive SMS alerts for ${product}`));
+            }
+        }
+    </script>
+</body>
+</html>

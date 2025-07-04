@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreeNify | Farm-to-Table Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">GreeNify<span>Harvest</span></a>
+                
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Shop</a>
+                    <a href="#">Farmers</a>
+                    <a href="#">Buyers</a>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                </div>
+                
+                <div class="nav-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-user"></i>
+                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-bars menu-toggle"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="Agr.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Farm-to-Table, Made Simple</h1>
+            <p>Connect directly with local farmers. Fresh, sustainable, and fair.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Shop Now</a>
+                <a href="#" class="btn btn-secondary">Meet Farmers</a>
+            </div>
+        </div>
+       
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for tomatoes, dairy, farmers near you...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="search-filters">
+                    <div class="filter-dropdown">
+                        <select>
+                            <option>All Categories</option>
+                            <option>Vegetables</option>
+                            <option>Fruits</option>
+                            <option>Dairy</option>
+                            <option>Meat</option>
+                            <option>Rice</option>
+                            <option>Pigs</option>
+                        </select>
+                    </div>
+                    <div class="filter-dropdown">
+                        <select>
+                            <option>Within 10 miles</option>
+                            <option>Within 25 miles</option>
+                            <option>Within 50 miles</option>
+                            <option>Any distance</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Seasonal Picks</h2>
+                <p>Fresh from local farms this week</p>
+                <a href="#">View all products <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="grid">
+                <!-- Product 1 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655" alt="Organic Tomatoes">
+                    </div>
+                    <div class="card-content">
+                        <h3>Organic Tomatoes</h3>
+                        <p>Grown by Green Valley Farms</p>
+                        <p class="price">Mk1000/lb</p>
+                        <span class="stock-indicator" data-product-id="123"></span>
+                        <a href="#" class="card-btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba" alt="Fresh Strawberries">
+                    </div>
+                    <div class="card-content">
+                        <h3>Fresh Strawberries</h3>
+                        <p>Grown by Berry Good Farms</p>
+                        <p class="price">Mk2400/lb</p>
+                        <span class="stock-indicator" data-product-id="123"></span>
+                        <a href="#" class="card-btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1566842600175-97dca3c5ad32" alt="Free-Range Eggs">
+                    </div>
+                    <div class="card-content">
+                        <h3>Free-Range Eggs</h3>
+                        <p>From Happy Hen Farm</p>
+                        <p class="price">Mk12600/dozen</p>
+                        <span class="stock-indicator" data-product-id="123"></span>
+                        <a href="#" class="card-btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1603569283847-aa295f0d016a" alt="Artisan Bread">
+                    </div>
+                    <div class="card-content">
+                        <h3>Artisan Bread</h3>
+                        <p>Baked by Hillside Bakery</p>
+                        <p class="price">Mk3500/loaf</p>
+                        <span class="stock-indicator" data-product-id="123"></span>
+                        <a href="#" class="card-btn">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Farmers -->
+    <section class="fe
+    atured-section" style="background-color: var(--neutral-light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Your Farmers</h2>
+                <p>Connect with the people behind your food</p>
+                <a href="#">View all farmers <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="grid">
+                <!-- Farmer 1 -->
+                <div class="card">
+                    <div class="card-img">
+                        <div class="verification-badge-container">
+  <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzNBN0Q0NCIvPgogIDxwYXRoIGQ9Ik03IDEyTDExIDE2TDE3IDgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" 
+       alt="Verified Farmer" 
+       class="verification-badge"
+       data-badge-type="organic">
+</div>
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae" alt="Green Valley Farms">
+                    </div>
+                    <div class="card-content">
+                        <h3>Green Valley Farms</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 15 miles away</p>
+                        <p>Organic vegetables since 1995</p>
+                        <a href="#" class="card-btn">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Farmer 2 -->
+                <div class="card">
+                    <div class="card-img">
+                        <div class="verification-badge-container">
+  <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzNBN0Q0NCIvPgogIDxwYXRoIGQ9Ik03IDEyTDExIDE2TDE3IDgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" 
+       alt="Verified Farmer" 
+       class="verification-badge"
+       data-badge-type="award"> 
+</div>
+                        <img src="https://images.unsplash.com/photo-1573497491765-dccce02b29df" alt="Sunny Acres">
+                    </div>
+                    <div class="card-content">
+                        <h3>Sunny Acres</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 8 miles away</p>
+                        <p>Family-owned dairy farm</p>
+                        <a href="#" class="card-btn">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Farmer 3 -->
+                <div class="card">
+                    <div class="card-img">
+                        <div class="verification-badge-container">
+  <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzNBN0Q0NCIvPgogIDxwYXRoIGQ9Ik03IDEyTDExIDE2TDE3IDgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" 
+       alt="Verified Farmer" 
+       class="verification-badge"
+       data-badge-type="verified">
+</div>
+                        <img src="https://images.unsplash.com/photo-1605007493699-af65834f8a00" alt="Berry Good Farms">
+                    </div>
+                    <div class="card-content">
+                        <h3>Berry Good Farms</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 22 miles away</p>
+                        <p>Specializing in berries</p>
+                        <a href="#" class="card-btn">View Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Farmer 4 -->
+                <div class="card">
+                    <div class="card-img">
+                       <div class="verification-badge-container">
+  <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzNBN0Q0NCIvPgogIDxwYXRoIGQ9Ik03IDEyTDExIDE2TDE3IDgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPg==" 
+       alt="Verified Farmer" 
+       class="verification-badge"
+       data-badge-type="verified"> 
+</div>
+                        <img src="https://images.unsplash.com/photo-1601342630314-8427c38bf5e6" alt="Happy Hen Farm">
+                    </div>
+                    <div class="card-content">
+                        <h3>Happy Hen Farm</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 12 miles away</p>
+                        <p>Pasture-raised poultry</p>
+                        <a href="#" class="card-btn">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose GreeNify?</h2>
+                <p>We are changing the way you connect with your food</p>
+            </div>
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>Support eco-friendly farming practices that protect our planet for future generations.</p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Transparency</h3>
+                    <p>Know exactly where your food comes from and how it's grown or raised.</p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>Build direct relationships with local farmers and food producers in your area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Join the Movement</h2>
+            <p>Be part of a growing community that values fresh, local, and sustainable food.</p>
+            <a href="#" class="btn btn-primary">Sign Up Now</a>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Farmers Connected</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100,000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1M+</div>
+                    <div class="stat-label">Products Sold</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">GreeNify<span>Harvest</span></a>
+                    <p>Connecting communities with local farmers for fresh, sustainable food since 2015.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Farmers</a></li>
+                         <li><a href="#">Buyers</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Vegetables</a></li>
+                        <li><a href="#">Fruits</a></li>
+                        <li><a href="#">Dairy</a></li>
+                        <li><a href="#">Meat & Poultry</a></li>
+                        <li><a href="#">Bakery</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new products, buyers and farmers.</p>
+                    <input type="email" placeholder="Your email address">
+                    <a href="#" class="btn">Subscribe</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FreshHarvest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+ <script src="greeNfy.js"></script>
+</body>
+</html>

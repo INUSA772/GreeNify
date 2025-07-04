@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard | FarmConnect</title>
+    <style>
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 15px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+        }
+        .action-btn {
+            flex: 1;
+            background: var(--light);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .sms-broadcast {
+            padding: 15px;
+        }
+        .sms-textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Farmer Dashboard</h1>
+    </div>
+
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <h3>24</h3>
+            <p>Active Listings</p>
+        </div>
+        <div class="stat-card">
+            <h3>8</h3>
+            <p>New Orders</p>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+        <button class="action-btn" onclick="location.href='add-product.html'">
+            <i class="fas fa-plus"></i> Add Product
+        </button>
+        <button class="action-btn" onclick="location.href='orders.html'">
+            <i class="fas fa-shopping-bag"></i> View Orders
+        </button>
+    </div>
+
+    <div class="sms-broadcast">
+        <h3>Send SMS to Buyers</h3>
+        <textarea class="sms-textarea" placeholder="Message..."></textarea>
+        <button class="checkout-btn" onclick="sendBulkSMS()">
+            <i class="fas fa-sms"></i> Send to 150 Subscribers
+        </button>
+    </div>
+
+    <script>
+        function sendBulkSMS() {
+            const message = document.querySelector('.sms-textarea').value;
+            if (message && confirm("Send this SMS to all subscribers?")) {
+                fetch('https://your-backend-url/bulk-sms', {
+                    method: 'POST',
+                    body: JSON.stringify({ message })
+                })
+                .then(() => alert("SMS queued for delivery"));
+            }
+        }
+    </script>
+</body>
+</html>

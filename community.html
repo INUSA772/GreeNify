@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | FarmConnect</title>
+    <style>
+        .forum-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        .forum-tab {
+            padding: 15px;
+            text-align: center;
+            flex: 1;
+        }
+        .forum-tab.active {
+            border-bottom: 3px solid var(--primary);
+        }
+        .post {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .sms-subscribe {
+            background: var(--light);
+            padding: 15px;
+            margin: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Community Forum</h1>
+    </div>
+
+    <div class="forum-tabs">
+        <div class="forum-tab active">Discussions</div>
+        <div class="forum-tab">Events</div>
+        <div class="forum-tab">Tips</div>
+    </div>
+
+    <div class="post">
+        <h3>Best practices for tomato farming</h3>
+        <p>Posted by John K. • 2 days ago</p>
+    </div>
+
+    <div class="sms-subscribe">
+        <h3>Get Daily Farming Tips</h3>
+        <button class="sms-alert-btn" onclick="subscribeToTips()">
+            <i class="fas fa-sms"></i> Subscribe via SMS
+        </button>
+    </div>
+
+    <script>
+        function subscribeToTips() {
+            const phone = prompt("Enter your phone number:");
+            if (phone) {
+                fetch('https://your-backend-url/subscribe-tips', {
+                    method: 'POST',
+                    body: JSON.stringify({ phone })
+                })
+                .then(() => alert("You'll receive daily farming tips!"));
+            }
+        }
+    </script>
+</body>
+</html>

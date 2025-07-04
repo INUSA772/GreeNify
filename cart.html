@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | FarmConnect</title>
+    <style>
+        .cart-container {
+            padding: 15px;
+        }
+        .cart-item {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        .checkout-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Your Cart</h1>
+    </div>
+
+    <div class="cart-container">
+        <div class="cart-item">
+            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655" class="cart-item-img" alt="Tomatoes">
+            <div>
+                <h4>Tomatoes</h4>
+                <p>KSh 150 × 2kg</p>
+                <p>Total: KSh 300</p>
+            </div>
+        </div>
+        
+        <button class="checkout-btn" onclick="initiateUSSDCheckout()">
+            Checkout via USSD
+        </button>
+    </div>
+
+    <script>
+        function initiateUSSDCheckout() {
+            const ussdCode = '*384*12345*1#';
+            alert(`Dial ${ussdCode} to complete payment`);
+            // For Android devices - auto-dial
+            window.location.href = `tel:${ussdCode}`;
+        }
+    </script>
+</body>
+</html>
